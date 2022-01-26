@@ -1,7 +1,7 @@
 # install-redis-operator
 
 ## Prerequisites
-- k8s(v1.11+) cluster & namespace "redis-operator"
+- k8s(v1.11+) cluster
 
 ## Reference
 - [redos operator docs](https://ot-container-kit.github.io/redis-operator/guide/installation.html)
@@ -21,3 +21,7 @@
   kubectl apply -f https://raw.githubusercontent.com/OT-CONTAINER-KIT/redis-operator/master/config/rbac/role_binding.yaml
 
   kubectl apply -f https://raw.githubusercontent.com/OT-CONTAINER-KIT/redis-operator/master/config/manager/manager.yaml
+
+- 확인
+  ```shell
+  kubectl get namespace
