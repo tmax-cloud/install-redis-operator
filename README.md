@@ -5,7 +5,7 @@ redis-operator(v0.10.0) install guide
 - k8s(v1.11+) cluster
 
 ## Reference
-- [reds operator docs](https://ot-container-kit.github.io/redis-operator/guide/installation.html)
+- [redis operator docs](https://ot-container-kit.github.io/redis-operator/guide/installation.html)
 
 ## Intallation
 - helm으로 설치가 안되는 issue [#17](https://github.com/OT-CONTAINER-KIT/helm-charts/issues/17)
