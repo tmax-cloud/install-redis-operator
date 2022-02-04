@@ -3478,7 +3478,6 @@ spec:
                               - key
                               - path
                               type: object
-<<<<<<< HEAD
                             fieldRef:
                               description: 'Selects a field of the pod: supports metadata.name,
                                 metadata.namespace, `metadata.labels[''<KEY>'']`,
@@ -3577,22 +3576,10 @@ spec:
                           resources required. If Requests is omitted for a container,
                           it defaults to Limits if that is explicitly specified, otherwise
                           to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/'
-=======
-                            type: array
-                          optional:
-                            description: Specify whether the Secret or its keys must
-                              be defined
-                            type: boolean
-                          secretName:
-                            description: 'Name of the secret in the pod''s namespace
-                              to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret'
-                            type: string
->>>>>>> upstream/master
                         type: object
                     required:
                     - secret
                     type: object
-<<<<<<< HEAD
                 required:
                 - image
                 type: object
@@ -6069,15 +6056,6 @@ spec:
                       set in both SecurityContext and PodSecurityContext, the value
                       specified in SecurityContext takes precedence for that container.
                       Note that this field cannot be set when spec.os.name is windows.
-=======
-                  clusterSize:
-                    format: int32
-                    minimum: 3
-                    type: integer
-                  kubernetesConfig:
-                    description: KubernetesConfig will be the JSON struct for Basic
-                      Redis Config
->>>>>>> upstream/master
                     properties:
                       image:
                         type: string
@@ -6085,7 +6063,6 @@ spec:
                         description: PullPolicy describes a policy for if/when to
                           pull a container image
                         type: string
-<<<<<<< HEAD
                       type:
                         description: Type is a SELinux type label that applies to
                           the container.
@@ -6190,29 +6167,11 @@ spec:
                       items:
                         description: EnvVar represents an environment variable present
                           in a Container.
-=======
-                      imagePullSecrets:
-                        items:
-                          description: LocalObjectReference contains enough information
-                            to let you locate the referenced object inside the same
-                            namespace.
-                          properties:
-                            name:
-                              description: 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                TODO: Add other useful fields. apiVersion, kind, uid?'
-                              type: string
-                          type: object
-                        type: array
-                      redisSecret:
-                        description: ExistingPasswordSecret is the struct to access
-                          the existing secret
->>>>>>> upstream/master
                         properties:
                           key:
                             type: string
                           name:
                             type: string
-<<<<<<< HEAD
                           value:
                             description: 'Variable references $(VAR_NAME) are expanded
                               using the previously defined environment variables in
@@ -6580,14 +6539,6 @@ spec:
                               feature.
                             type: object
                           capacity:
-=======
-                        type: object
-                      resources:
-                        description: ResourceRequirements describes the compute resource
-                          requirements.
-                        properties:
-                          limits:
->>>>>>> upstream/master
                             additionalProperties:
                               anyOf:
                               - type: integer
