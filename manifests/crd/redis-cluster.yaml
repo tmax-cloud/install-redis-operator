@@ -3425,79 +3425,6 @@ spec:
                         type: string
                       key:
                         type: string
-<<<<<<< HEAD
-                      name:
-                        type: string
-                    type: object
-                  resources:
-                    description: ResourceRequirements describes the compute resource
-                      requirements.
-                    properties:
-                      limits:
-                        additionalProperties:
-                          anyOf:
-                          - type: integer
-                          - type: string
-                          pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
-                          x-kubernetes-int-or-string: true
-                        description: 'Limits describes the maximum amount of compute
-                          resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/'
-                        type: object
-                      requests:
-                        additionalProperties:
-                          anyOf:
-                          - type: integer
-                          - type: string
-                          pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
-                          x-kubernetes-int-or-string: true
-                        description: 'Requests describes the minimum amount of compute
-                          resources required. If Requests is omitted for a container,
-                          it defaults to Limits if that is explicitly specified, otherwise
-                          to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/'
-                        type: object
-                    type: object
-                required:
-                - image
-                type: object
-              nodeSelector:
-                additionalProperties:
-                  type: string
-                type: object
-              priorityClassName:
-                type: string
-              redisExporter:
-                description: RedisExporter interface will have the information for
-                  redis exporter related stuff
-                properties:
-                  enabled:
-                    type: boolean
-                  env:
-                    items:
-                      description: EnvVar represents an environment variable present
-                        in a Container.
-                      properties:
-                        name:
-                          description: Name of the environment variable. Must be a
-                            C_IDENTIFIER.
-                          type: string
-                        value:
-                          description: 'Variable references $(VAR_NAME) are expanded
-                            using the previously defined environment variables in
-                            the container and any service environment variables. If
-                            a variable cannot be resolved, the reference in the input
-                            string will be unchanged. Double $$ are reduced to a single
-                            $, which allows for escaping the $(VAR_NAME) syntax: i.e.
-                            "$$(VAR_NAME)" will produce the string literal "$(VAR_NAME)".
-                            Escaped references will never be expanded, regardless
-                            of whether the variable exists or not. Defaults to "".'
-                          type: string
-                        valueFrom:
-                          description: Source for the environment variable's value.
-                            Cannot be used if value is not empty.
-                          properties:
-                            configMapKeyRef:
-                              description: Selects a key of a ConfigMap.
-=======
                       secret:
                         description: Reference to secret which contains the certificates
                         properties:
@@ -3525,7 +3452,6 @@ spec:
                               and may not contain the '..' path or start with '..'.
                             items:
                               description: Maps a string key to a path within a volume.
->>>>>>> upstream/master
                               properties:
                                 key:
                                   description: The key to project.
