@@ -2,7 +2,7 @@
 - redis-secret이 반드시 먼저 생성되어 있어야 함
     - 다음 명령어로 생성
         ```shell
-        kubectl apply -f ./examples/redis-standalone.yaml
+        kubectl apply -f ./examples/redis-secret.yaml
         
 - [redis-standalone](https://ot-container-kit.github.io/redis-operator/guide/redis-config.html)
     - 다음 명령어로 생성
