@@ -20,4 +20,5 @@ redis-operator(v0.10.0) install guide
 - 확인
   ```shell
   kubectl get namespace
+  ```
   redis-operator 존재 확인
