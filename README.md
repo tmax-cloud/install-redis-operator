@@ -13,10 +13,10 @@ redis-operator(v0.10.0) install guide
   ```shell
   kubectl apply -f ./manifests/crd/redis-standalone.yaml
   kubectl apply -f ./manifests/crd/redis-cluster.yaml
-  kubectl apply -f ./manifests/rbac/serviceaccount.yaml
   kubectl apply -f ./manifests/rbac/role.yaml
   kubectl apply -f ./manifests/rbac/role-binding.yaml
   kubectl apply -f ./manifests/manager.yaml
+  kubectl apply -f ./manifests/rbac/serviceaccount.yaml
 - 확인
   ```shell
   kubectl get namespace
