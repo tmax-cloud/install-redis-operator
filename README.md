@@ -7,7 +7,7 @@ redis-operator(v0.10.0) install guide
 ## Reference
 - [redis operator docs](https://ot-container-kit.github.io/redis-operator/guide/installation.html)
 
-## Intallation
+## Installation
 - helm으로 설치가 안되는 issue [#17](https://github.com/OT-CONTAINER-KIT/helm-charts/issues/17)
 - 따라서 manifest file을 직접 apply하는 방법 사용.
   ```shell
