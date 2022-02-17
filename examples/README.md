@@ -9,7 +9,7 @@
         ```shell
         kubectl apply -f redis-standalone.yaml
         
-- [redis-cluister](https://ot-container-kit.github.io/redis-operator/guide/redis-cluster-config.html#helm-parameters)
+- [redis-cluster](https://ot-container-kit.github.io/redis-operator/guide/redis-cluster-config.html#helm-parameters)
     - 다음 명령어로 생성
         ```shell
         kubectl apply -f redis-cluster.yaml
