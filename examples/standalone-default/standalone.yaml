@@ -4,8 +4,6 @@ kind: Redis
 metadata:
   name: redis-standalone
 spec:
-  # redisConfig:
-  #   additionalRedisConfig: redis-external-config
   kubernetesConfig:
     image: quay.io/opstree/redis:v6.2.5
     imagePullPolicy: IfNotPresent
@@ -17,10 +15,8 @@ spec:
         cpu: 101m
         memory: 128Mi
     redisSecret:
-      name: redis-secret
+      name: redis-standalone-secret
       key: password
-    # imagePullSecrets:
-    #   - name: regcred
   redisExporter:
     enabled: false
     image: quay.io/opstree/redis-exporter:1.0
@@ -32,31 +28,10 @@ spec:
       limits:
         cpu: 100m
         memory: 128Mi
-# Environment Variables for Redis Exporter
-    # env:
-    # - name: REDIS_EXPORTER_INCL_SYSTEM_METRICS
-    #   value: "true"
-    # - name: UI_PROPERTIES_FILE_NAME
-    #   valueFrom:
-    #     configMapKeyRef:
-    #       name: game-demo
-    #       key: ui_properties_file_name
-    # - name: SECRET_USERNAME
-    #   valueFrom:
-    #     secretKeyRef:
-    #       name: mysecret
-    #       key: username
   storage:
     volumeClaimTemplate:
       spec:
-        # storageClassName: standard
         accessModes: ["ReadWriteOnce"]
         resources:
           requests:
             storage: 1Gi
-  # nodeSelector:
-  #   kubernetes.io/hostname: minikube
-  # securityContext: {}
-  # priorityClassName:
-  # affinity:
-  # Tolerations: []
