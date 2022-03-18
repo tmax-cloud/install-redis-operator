@@ -24,34 +24,29 @@ mkdir follower
 mkdir leader
 ```
 
-### 4. redis secret 생성
-```shell
-kubectl apply -f secret.yaml -n {생성한 namespace 명}
-```
-
-### 5. install.sh 권한 부여 후 실행
+### 4. install.sh 권한 부여 후 실행
 
 ```shell
 chmod +x install.sh
 ./install.sh
 ```
 
-### 6. leader pv 생성
+### 5. leader pv 생성
 ```shell
 kubectl apply -f leader-pv.yaml -n {생성한 namespace 명}
 ```
 
-### 7. follower pv 생성
+### 6. follower pv 생성
 ```shell
 kubectl apply -f follower-pv.yaml -n {생성한 namespace 명}
 ```
 
-### 8. example cluster 생성
+### 7. example cluster 생성
 ```shell
 kubectl apply -f local-example-cluster.yaml -n {생성한 namespace 명}
 ```
 
-### 9. 정상 생성 확인
+### 8. 정상 생성 확인
 - pod 생성 확인 명령어
     ```shell
     kubectl get pods -n {생성한 namespace 명}
@@ -87,11 +82,6 @@ kubectl apply -f local-example-cluster.yaml -n {생성한 namespace 명}
     bash-4.4# redis-cli
     127.0.0.1:6379> 
     ```
-- 생성한 redis secret의 stringData.password 값 입력
-    ```shell
-    127.0.0.1:6379> auth 123==
-    OK
-    ```
 - cluster info 확인
     ```shell
     cluster_state:ok
@@ -125,7 +115,5 @@ kubectl delete -f local-example-cluster.yaml -n {생성한 namespace 명}
 kubectl delete -f leader-pv.yaml -n {생성한 namespace 명}
 3. follower-pv 삭제
 kubectl delete -f follower-pv.yaml -n {생성한 namespace 명}
-4. secret 삭제
-kubectl delete -f secret.yaml -n {생성한 namespace 명}
-5. localstorage 삭제
+4. localstorage 삭제
 kubectl delete -f storage.yaml -n {생성한 namespace 명}
