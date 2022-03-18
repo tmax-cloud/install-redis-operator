@@ -19,3 +19,14 @@ kubectl apply -f secret.yaml -n {생성한 namespace 명}
 ```shell
 kubectl apply -f cluster.yaml -n {생성한 namespace 명}
 ```
+
+## 삭제 Guide
+### 1. secret 삭제
+```shell
+kubectl delete -f secret.yaml -n {생성한 namespace 명}
+```
+
+### 2. redis cluster 삭제
+```shell
+kubectl delete -f cluster.yaml -n {생성한 namespace 명}
+```

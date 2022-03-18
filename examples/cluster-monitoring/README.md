@@ -59,28 +59,28 @@ kubectl apply -f local-example-cluster.yaml -n {생성한 namespace 명}
 
 - 출력결과
     ```shell
-    NAME                 READY   STATUS    RESTARTS   AGE
-    example-follower-0   1/1     Running   0          4m57s
-    example-follower-1   1/1     Running   0          4m26s
-    example-follower-2   1/1     Running   0          3m56s
-    example-leader-0     1/1     Running   0          4m57s
-    example-leader-1     1/1     Running   0          4m27s
-    example-leader-2     1/1     Running   0          3m56s
+    NAME                            READY   STATUS    RESTARTS   AGE
+    example-monitoring-follower-0   2/2     Running   0          18m
+    example-monitoring-follower-1   2/2     Running   0          18m
+    example-monitoring-follower-2   2/2     Running   0          17m
+    example-monitoring-leader-0     2/2     Running   0          18m
+    example-monitoring-leader-1     2/2     Running   0          18m
+    example-monitoring-leader-2     2/2     Running   0          17m
     ```
 - container접속
     ```shell
-    kubectl exec -it example-leader-0 -n {생성한 namespace 명} -- bash
+    kubectl exec -it example-monitoring-leader-0 -n {생성한 namespace 명} -- bash
     ```
 - nodes.conf확인
     ```shell
     bash-4.4# cat nodes.conf 
-    185bad5799d5c9fa2b1b1c42c5f48fea5fae4426 10.244.128.168:6379@16379 slave 38d79b7249f47539b353785ebd5d1f177f2e526f 0 1647482329296 1 connected
-    730b566e5e1b9308bba25d61bed6eefb4e7ec813 10.244.128.151:6379@16379 master - 0 1647482330299 2 connected 5461-10922
-    c6174a5b9a36d5e8af0c6a749405a7bfc05ccbe6 10.244.105.56:6379@16379 master - 0 1647482329000 3 connected 10923-16383
-    aaa5dcbdfcfc675c7a4a1925cb60a2fbdafa1cb7 10.244.136.200:6379@16379 slave c6174a5b9a36d5e8af0c6a749405a7bfc05ccbe6 0 1647482330399 3 connected
-    38d79b7249f47539b353785ebd5d1f177f2e526f 10.244.136.214:6379@16379 myself,master - 0 1647482328000 1 connected 0-5460
-    498250e10e09c5193d731ac88f5a1c74c8fd90b1 10.244.105.1:6379@16379 slave 730b566e5e1b9308bba25d61bed6eefb4e7ec813 0 1647482329000 2 connected
-    vars currentEpoch 12 lastVoteEpoch 0
+    6afbca299ed1a4a15ab32795aa5f88732e60003f 10.244.222.189:6379@16379 slave adbb3c32d6ddd37e9774f2483c19e94d4861b0d6 0 1647578367566 2 connected
+    2eabbcc3dd338267fcea40f1cf0ae95badf6fe6a 10.244.71.255:6379@16379 slave 9557e0888fb2f1661fbf40230ea2c49a86a56dc2 0 1647578367564 1 connected
+    0c7cbca07834d01723b9fc0ee7ce996d2d36bb6e 10.244.222.157:6379@16379 master - 0 1647578366564 11 connected 10923-16383
+    adbb3c32d6ddd37e9774f2483c19e94d4861b0d6 10.244.71.217:6379@16379 master - 0 1647578368064 2 connected 5461-10922
+    9557e0888fb2f1661fbf40230ea2c49a86a56dc2 10.244.235.56:6379@16379 myself,master - 0 1647578367000 1 connected 0-5460
+    1e6eb9f70b2f9777807141bfa1e4bd25b025b6a3 10.244.235.61:6379@16379 slave 0c7cbca07834d01723b9fc0ee7ce996d2d36bb6e 0 1647578368563 11 connected
+    vars currentEpoch 11 lastVoteEpoch 0
     ```
 - redis cli 실행
     ```shell
@@ -94,7 +94,6 @@ kubectl apply -f local-example-cluster.yaml -n {생성한 namespace 명}
     ```
 - cluster info 확인
     ```shell
-    127.0.0.1:6379> cluster info
     cluster_state:ok
     cluster_slots_assigned:16384
     cluster_slots_ok:16384
@@ -102,15 +101,15 @@ kubectl apply -f local-example-cluster.yaml -n {생성한 namespace 명}
     cluster_slots_fail:0
     cluster_known_nodes:6
     cluster_size:3
-    cluster_current_epoch:12
+    cluster_current_epoch:11
     cluster_my_epoch:1
-    cluster_stats_messages_ping_sent:732
-    cluster_stats_messages_pong_sent:722
-    cluster_stats_messages_sent:1454
-    cluster_stats_messages_ping_received:719
-    cluster_stats_messages_pong_received:727
+    cluster_stats_messages_ping_sent:1764
+    cluster_stats_messages_pong_sent:1748
+    cluster_stats_messages_sent:3512
+    cluster_stats_messages_ping_received:1745
+    cluster_stats_messages_pong_received:1760
     cluster_stats_messages_meet_received:3
-    cluster_stats_messages_received:1449
+    cluster_stats_messages_received:3508
     ```
 
 ## 삭제 Guide

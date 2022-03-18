@@ -18,7 +18,7 @@ spec:
         - key: kubernetes.io/hostname
           operator: In
           values:
-          - ck1-3minion2
+          - {HOST_NAME2}
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -40,7 +40,7 @@ spec:
         - key: kubernetes.io/hostname
           operator: In
           values:
-          - ck1-3minion3
+          - {HOST_NAME3}
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -62,7 +62,7 @@ spec:
         - key: kubernetes.io/hostname
           operator: In
           values:
-          - ck1-3minion1
+          - {HOST_NAME1}
 ---
 
 apiVersion: v1
