@@ -111,6 +111,12 @@ kubectl apply -f local-example-cluster.yaml -n {생성한 namespace 명}
     cluster_stats_messages_meet_received:3
     cluster_stats_messages_received:3508
     ```
+- prometheus에서 metric 정보 확인
+    - prometheus가 cluster 외부노출된 상태라면 browser접속 가능
+    - "redis_exporter_last_scrape_connect_time_seconds" query작성
+    - execute button click
+    - graph tab에서 다음 정보 확인
+    ![image](https://user-images.githubusercontent.com/22141521/158940771-a8b7349d-5e6f-4b10-9066-72b742ee2eb8.png)
 
 ## 삭제 Guide
 1. cluster 삭제
