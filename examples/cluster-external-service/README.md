@@ -41,12 +41,17 @@ kubectl apply -f leader-pv.yaml -n {생성한 namespace 명}
 kubectl apply -f follower-pv.yaml -n {생성한 namespace 명}
 ```
 
-### 7. example cluster 생성
+### 7. service 객체 생성
+```shell
+kubectl apply -f cluster-svc.yaml -n {생성한 namespace 명}
+```
+
+### 8. example cluster 생성
 ```shell
 kubectl apply -f local-example-cluster.yaml -n {생성한 namespace 명}
 ```
 
-### 8. 정상 생성 확인
+### 9. 정상 생성 확인
 - pod 생성 확인 명령어
     ```shell
     kubectl get pods -n {생성한 namespace 명}
@@ -54,28 +59,28 @@ kubectl apply -f local-example-cluster.yaml -n {생성한 namespace 명}
 
 - 출력결과
     ```shell
-    NAME                            READY   STATUS    RESTARTS   AGE
-    example-monitoring-follower-0   2/2     Running   0          18m
-    example-monitoring-follower-1   2/2     Running   0          18m
-    example-monitoring-follower-2   2/2     Running   0          17m
-    example-monitoring-leader-0     2/2     Running   0          18m
-    example-monitoring-leader-1     2/2     Running   0          18m
-    example-monitoring-leader-2     2/2     Running   0          17m
+    NAME                          READY   STATUS    RESTARTS   AGE
+    example-external-follower-0   1/1     Running   0          85s
+    example-external-follower-1   1/1     Running   0          51s
+    example-external-follower-2   0/1     Running   0          24s
+    example-external-leader-0     1/1     Running   0          88s
+    example-external-leader-1     1/1     Running   0          66s
+    example-external-leader-2     1/1     Running   0          43s
     ```
 - container접속
     ```shell
-    kubectl exec -it example-monitoring-leader-0 -n {생성한 namespace 명} -- bash
+    kubectl exec -it example-external-leader-0 -n {생성한 namespace 명} -- bash
     ```
 - nodes.conf확인
     ```shell
     bash-4.4# cat nodes.conf 
-    6afbca299ed1a4a15ab32795aa5f88732e60003f 10.244.222.189:6379@16379 slave adbb3c32d6ddd37e9774f2483c19e94d4861b0d6 0 1647578367566 2 connected
-    2eabbcc3dd338267fcea40f1cf0ae95badf6fe6a 10.244.71.255:6379@16379 slave 9557e0888fb2f1661fbf40230ea2c49a86a56dc2 0 1647578367564 1 connected
-    0c7cbca07834d01723b9fc0ee7ce996d2d36bb6e 10.244.222.157:6379@16379 master - 0 1647578366564 11 connected 10923-16383
-    adbb3c32d6ddd37e9774f2483c19e94d4861b0d6 10.244.71.217:6379@16379 master - 0 1647578368064 2 connected 5461-10922
-    9557e0888fb2f1661fbf40230ea2c49a86a56dc2 10.244.235.56:6379@16379 myself,master - 0 1647578367000 1 connected 0-5460
-    1e6eb9f70b2f9777807141bfa1e4bd25b025b6a3 10.244.235.61:6379@16379 slave 0c7cbca07834d01723b9fc0ee7ce996d2d36bb6e 0 1647578368563 11 connected
-    vars currentEpoch 11 lastVoteEpoch 0
+    99c260b87e40a6903f3e4dadde43d372e9525bf1 10.244.71.69:6379@16379 master - 0 1647826181390 3 connected 10923-16383
+    abf8ba450aafe96961926797e5ec419bc0768666 10.244.71.71:6379@16379 slave b731bfec0f5f5f03e0c3316906af481d1e9619d8 0 1647826180333 2 connected
+    395e0fde6d4349eb4c5e6dd721423a7e3aa7e584 10.244.48.77:6379@16379 slave 9557e0888fb2f1661fbf40230ea2c49a86a56dc2 0 1647826180000 1 connected
+    75ab2da0d7c22e5ebabb612c767862e018864b6f 10.244.235.14:6379@16379 slave 99c260b87e40a6903f3e4dadde43d372e9525bf1 0 0 3 disconnected
+    b731bfec0f5f5f03e0c3316906af481d1e9619d8 10.244.48.81:6379@16379 master - 0 1647826180386 2 connected 5461-10922
+    9557e0888fb2f1661fbf40230ea2c49a86a56dc2 10.244.235.1:6379@16379 myself,master - 0 1647826180000 1 connected 0-5460
+    vars currentEpoch 16 lastVoteEpoch 0
     ```
 - redis cli 실행
     ```shell
@@ -92,15 +97,15 @@ kubectl apply -f local-example-cluster.yaml -n {생성한 namespace 명}
     cluster_slots_fail:0
     cluster_known_nodes:6
     cluster_size:3
-    cluster_current_epoch:11
+    cluster_current_epoch:20
     cluster_my_epoch:1
-    cluster_stats_messages_ping_sent:1764
-    cluster_stats_messages_pong_sent:1748
-    cluster_stats_messages_sent:3512
-    cluster_stats_messages_ping_received:1745
-    cluster_stats_messages_pong_received:1760
+    cluster_stats_messages_ping_sent:380
+    cluster_stats_messages_pong_sent:360
+    cluster_stats_messages_sent:740
+    cluster_stats_messages_ping_received:357
+    cluster_stats_messages_pong_received:376
     cluster_stats_messages_meet_received:3
-    cluster_stats_messages_received:3508
+    cluster_stats_messages_received:736
     ```
 - prometheus에서 metric 정보 확인
     - prometheus가 cluster 외부노출된 상태라면 browser접속 가능
@@ -116,5 +121,7 @@ kubectl delete -f local-example-cluster.yaml -n {생성한 namespace 명}
 kubectl delete -f leader-pv.yaml -n {생성한 namespace 명}
 3. follower-pv 삭제
 kubectl delete -f follower-pv.yaml -n {생성한 namespace 명}
-4. localstorage 삭제
+4. secret 삭제
+kubectl delete -f secret.yaml -n {생성한 namespace 명}
+5. localstorage 삭제
 kubectl delete -f storage.yaml -n {생성한 namespace 명}

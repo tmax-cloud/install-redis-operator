@@ -1,0 +1,105 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: example-external-leader-example-external-leader-0
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: local-storage
+  local:
+    path: /leader
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - {HOST_NAME1}
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: example-external-leader-example-external-leader-1
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: local-storage
+  local:
+    path: /leader
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - {HOST_NAME2}
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: example-external-leader-example-external-leader-2
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: local-storage
+  local:
+    path: /leader
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - {HOST_NAME3}
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: example-external-leader-example-external-leader-0
+spec:
+  storageClassName: local-storage
+  volumeName: example-external-leader-example-external-leader-0
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: example-external-leader-example-external-leader-1
+spec:
+  storageClassName: local-storage
+  volumeName: example-external-leader-example-external-leader-1
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: example-external-leader-example-external-leader-2
+spec:
+  storageClassName: local-storage
+  volumeName: example-external-leader-example-external-leader-2
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
