@@ -2,7 +2,7 @@
 - k8s cluster 환경 : 3개 이상의 worker node
 - cluster size : 3이상
 
-## Redis Cluster Installation Guide
+## Redis Cluster Monitoring Installation Guide
 ### 1. namespace 생성
 ```shell
 kubectl create namespace {원하는 namespace 명}

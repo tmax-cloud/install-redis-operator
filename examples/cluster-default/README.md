@@ -5,7 +5,7 @@
 ## Reference
 - [redis-cluster](https://ot-container-kit.github.io/redis-operator/guide/redis-cluster-config.html#helm-parameters)
 
-## Redis Cluster Installation Guide
+## Redis Default Cluster Installation Guide
 ### 1. namespace 생성
 ```shell
 kubectl create namespace {원하는 namespace 명}
