@@ -4,7 +4,7 @@
 ## Reference
 - [redis-insight](https://docs.redis.com/latest/ri/)
 
-## Redis Default Cluster Installation Guide
+## Redis Insight Installation Guide
 ### 1. namespace 생성
 ```shell
 kubectl create namespace {원하는 namespace 명}
