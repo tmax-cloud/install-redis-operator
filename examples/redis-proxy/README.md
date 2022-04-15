@@ -2,6 +2,9 @@
 - k8s cluster 환경
 - k8s환경에 배포된 redis instance
 
+## Architecture
+![redis-proxy](https://user-images.githubusercontent.com/22141521/163504514-b03e1b19-aff2-404a-aad2-2a24e73c01da.png)
+
 ## Reference
 - [predixy](https://github.com/joyieldInc/predixy)
 
