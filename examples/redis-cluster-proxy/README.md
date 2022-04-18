@@ -27,7 +27,7 @@ kubectl apply -f kornrunner.yaml -n {생성한 namespace 명}
 ```
 
 ## 삭제 Guide
-### 1. kornrunner deploy, service 삭제
+### 1. deployment, service 삭제
 ```shell
 kubectl delete -f kornrunner.yaml -n {생성한 namespace 명}
 ```
