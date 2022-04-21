@@ -18,7 +18,7 @@ kubectl create namespace {원하는 namespace 명}
 ### 2. file 수정
 kornrunner.yaml file 내 line 34 부분 수정
 ```yaml
-command: ["/usr/local/bin/redis-cluster-proxy", "leader service의 ip주소:6379"]
+command: ["/usr/local/bin/redis-cluster-proxy", "{leader service의 ip주소:6379}"]
 ```
 
 ### 3. deployment, service(NodePort) 생성
