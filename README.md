@@ -34,6 +34,8 @@ redis-operator(v0.10.0) install guide
     $ export REDIS_OPERATOR_VERSION=v0.10.0
     $ export REDIS_VERSION=v6.2.5
     $ export REDIS_EXPORTER_VERSION=1.0
+    $ export REDIS_INSIGHT_VERSION=latest
+    $ export REDIS_PROXY_VERSION=latest
     $ export REGISTRY={ImageRegistryIP:Port}
     ```
 
@@ -47,18 +49,32 @@ redis-operator(v0.10.0) install guide
 
     $ sudo docker pull quay.io/opstree/redis-exporter:${REDIS_EXPORTER_VERSION}
     $ sudo docker save quay.io/opstree/redis-exporter:${REDIS_EXPORTER_VERSION} > redis_exporter_${REDIS_EXPORTER_VERSION}.tar
+
+    $ sudo docker pull docker.io/redislabs/redisinsight:${REDIS_INSIGHT_VERSION}
+    $ sudo docker save docker.io/redislabs/redisinsight:${REDIS_INSIGHT_VERSION} > redisinsight_${REDIS_INSIGHT_VERSION}.tar
+
+    $ sudo docker pull docker.io/tmaxcloudck/redis-cluster-proxy:${REDIS_PROXY_VERSION}
+    $ sudo docker save docker.io/tmaxcloudck/redis-cluster-proxy:${REDIS_PROXY_VERSION} > redis_cluster_proxy_${REDIS_PROXY_VERSION}.tar
     ```
+
 2. 위의 과정에서 생성한 tar file들을 폐쇄망 환경으로 이동시킨 뒤 사용하려는 registry에 image를 push한다.
     ```shell
     $ sudo docker load < redis_operator_${REDIS_OPERATOR_VERSION}.tar
     $ sudo docker load < redis_${REDIS_VERSION}.tar
     $ sudo docker load < redis_exporter_${REDIS_EXPORTER_VERSION}.tar
+    $ sudo docker load < redisinsight_${REDIS_INSIGHT_VERSION}.tar
+    $ sudo docker load < redis_cluster_proxy_${REDIS_PROXY_VERSION}.tar
 
     $ sudo docker tag quay.io/opstree/redis-operator:${REDIS_OPERATOR_VERSION} ${REGISTRY}/opstree/redis-operator:${REDIS_OPERATOR_VERSION}
     $ sudo docker tag quay.io/opstree/redis:${REDIS_VERSION} ${REGISTRY}/opstree/redis:${REDIS_VERSION}
     $ sudo docker tag quay.io/opstree/redis-exporter:${REDIS_EXPORTER_VERSION} ${REGISTRY}/opstree/redis-exporter:${REDIS_EXPORTER_VERSION}
+    $ sudo docker tag docker.io/redislabs/redisinsight:${REDIS_INSIGHT_VERSION} ${REGISTRY}/redislabs/redisinsight:${REDIS_INSIGHT_VERSION}
+    $ sudo docker tag docker.io/tmaxcloudck/redis-cluster-proxy:${REDIS_PROXY_VERSION} ${REGISTRY}/tmaxcloudck/redis-cluster-proxy:${REDIS_PROXY_VERSION}
+
 
     $ sudo docker push ${REGISTRY}/opstree/redis-operator:${REDIS_OPERATOR_VERSION}
     $ sudo docker push ${REGISTRY}/opstree/redis:${REDIS_VERSION}
     $ sudo docker push ${REGISTRY}/opstree/redis-exporter:${REDIS_EXPORTER_VERSION}
+    $ sudo docker push ${REGISTRY}/redislabs/redisinsight:${REDIS_INSIGHT_VERSION}
+    $ sudo docker push ${REGISTRY}/tmaxcloudck/redis-cluster-proxy:${REDIS_PROXY_VERSION}
     ```
