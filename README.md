@@ -22,3 +22,43 @@ redis-operator(v0.10.0) install guide
   kubectl get namespace
   ```
   redis-operator 존재 확인
+
+## 폐쇄망 설치 가이드
+- 설치를 진행하기 전 아래의 과정을 통해 필요한 image, yaml file을 준비한다
+1. 사용하는 image repository에 설치 시 필요한 image를 push한다.
+    - 작업 directory 생성 및 환경 설정
+    ```shell
+    $ mkdir -p ~/redis-install
+    $ export REDIS_HOME=~/redis-install
+    $ cd $REDIS_HOME
+    $ export REDIS_OPERATOR_VERSION=v0.10.0
+    $ export REDIS_VERSION=v6.2.5
+    $ export REDIS_EXPORTER_VERSION=1.0
+    $ export REGISTRY={ImageRegistryIP:Port}
+    ```
+
+    - 외부 network 통신이 가능한 환경에서 필요한 image를 download 후 압축해 저장한다.
+    ```shell
+    $ sudo docker pull quay.io/opstree/redis-operator:${REDIS_OPERATOR_VERSION}
+    $ sudo docker save quay.io/opstree/redis-operator:${REDIS_OPERATOR_VERSION} > redis_operator_${REDIS_OPERATOR_VERSION}.tar
+
+    $ sudo docker pull quay.io/opstree/redis:${REDIS_VERSION}
+    $ sudo docker save quay.io/opstree/redis:${REDIS_VERSION} > redis_${REDIS_VERSION}.tar
+
+    $ sudo docker pull quay.io/opstree/redis-exporter:${REDIS_EXPORTER_VERSION}
+    $ sudo docker save quay.io/opstree/redis-exporter:${REDIS_EXPORTER_VERSION} > redis_exporter_${REDIS_EXPORTER_VERSION}.tar
+    ```
+2. 위의 과정에서 생성한 tar file들을 폐쇄망 환경으로 이동시킨 뒤 사용하려는 registry에 image를 push한다.
+    ```shell
+    $ sudo docker load < redis_operator_${REDIS_OPERATOR_VERSION}.tar
+    $ sudo docker load < redis_${REDIS_VERSION}.tar
+    $ sudo docker load < redis_exporter_${REDIS_EXPORTER_VERSION}.tar
+
+    $ sudo docker tag quay.io/opstree/redis-operator:${REDIS_OPERATOR_VERSION} ${REGISTRY}/opstree/redis-operator:${REDIS_OPERATOR_VERSION}
+    $ sudo docker tag quay.io/opstree/redis:${REDIS_VERSION} ${REGISTRY}/opstree/redis:${REDIS_VERSION}
+    $ sudo docker tag quay.io/opstree/redis-exporter:${REDIS_EXPORTER_VERSION} ${REGISTRY}/opstree/redis-exporter:${REDIS_EXPORTER_VERSION}
+
+    $ sudo docker push ${REGISTRY}/opstree/redis-operator:${REDIS_OPERATOR_VERSION}
+    $ sudo docker push ${REGISTRY}/opstree/redis:${REDIS_VERSION}
+    $ sudo docker push ${REGISTRY}/opstree/redis-exporter:${REDIS_EXPORTER_VERSION}
+    ```
