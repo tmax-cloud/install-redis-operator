@@ -1,5 +1,5 @@
 # install-redis-operator
-redis-operator(v0.10.0) install guide
+redis-operator(v0.9.0) install guide
 
 ## Prerequisites
 - k8s(v1.11+) cluster
