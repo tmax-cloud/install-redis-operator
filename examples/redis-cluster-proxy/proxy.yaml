@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: redis-cluster-proxy-kornrunner-rs
+  name: redis-cluster-proxy-rs
   labels:
-    app: redis-cluster-proxy-kornrunner-rs
+    app: redis-cluster-proxy-rs
 spec:
   replicas: 3
   
   selector:
     matchLabels:
-      app: redis-cluster-proxy-kornrunner-rs
+      app: redis-cluster-proxy-rs
   template:
     metadata:
       labels:
-        app: redis-cluster-proxy-kornrunner-rs
+        app: redis-cluster-proxy-rs
     spec:
       affinity:
         podAntiAffinity:
@@ -25,20 +25,20 @@ spec:
                 - key: app
                   operator: In
                   values:
-                  - redis-cluster-proxy-kornrunner-rs
+                  - redis-cluster-proxy-rs
               topologyKey: "kubernetes.io/hostname"
       containers:
-      - name: redis-cluster-proxy-kornrunner-rs
-        image: kornrunner/redis-cluster-proxy:latest
+      - name: redis-cluster-proxy-rs
+        image: tmaxcloudck/redis-cluster-proxy:0.0.1
         imagePullPolicy: IfNotPresent
-        command: ["/usr/local/bin/redis-cluster-proxy", "10.96.4.97:6379"]
+        command: ["/usr/local/bin/redis-cluster-proxy", "10.96.148.202:6379"]
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: redis-cluster-proxy-kornrunner-svc
+  name: redis-cluster-proxy-svc
   labels:
-    app: redis-cluster-proxy-kornrunner-svc
+    app: redis-cluster-proxy-svc
 spec:
   # type: ClusterIP or LoadBalancer
   type: NodePort
@@ -46,6 +46,6 @@ spec:
     - port: 7777
       targetPort: 7777
       # nodePort: 32000 # The range of valid ports is 30000-32767
-      name: redis-cluster-proxy-kornrunner-svc
+      name: redis-cluster-proxy-svc
   selector:
-    app: redis-cluster-proxy-kornrunner-rs
+    app: redis-cluster-proxy-rs
