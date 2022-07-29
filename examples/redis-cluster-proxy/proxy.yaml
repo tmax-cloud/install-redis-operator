@@ -29,7 +29,7 @@ spec:
               topologyKey: "kubernetes.io/hostname"
       containers:
       - name: redis-cluster-proxy-rs
-        image: tmaxcloudck/redis-cluster-proxy:0.0.1
+        image: tmaxcloudck/redis-cluster-proxy:1.0-beta2
         imagePullPolicy: IfNotPresent
         command: ["/usr/local/bin/redis-cluster-proxy", "10.96.148.202:6379"]
 ---
