@@ -7,6 +7,11 @@ redis-operator(v0.9.0) install guide
 ## Reference
 - [redis operator docs](https://ot-container-kit.github.io/redis-operator/guide/installation.html)
 
+
+## Deployment log level 설정 guide
+- 다음 file의 line 33 수정
+  + [manager.yaml](https://github.com/tmax-cloud/install-redis-operator/blob/main/manifests/manager.yaml#L33) '='연산자 우항에 level을 설정 후 yaml file apply
+
 ## Installation
 - helm으로 설치가 안되는 issue [#17](https://github.com/OT-CONTAINER-KIT/helm-charts/issues/17)
 - 따라서 manifest file을 직접 apply하는 방법 사용.
@@ -79,6 +84,3 @@ redis-operator(v0.9.0) install guide
     $ sudo docker push ${REGISTRY}/tmaxcloudck/redis-cluster-proxy:${REDIS_PROXY_VERSION}
     ```
     
-## Deployment log level 설정 guide
-- 다음 file 수정
-  + [manager.yaml](https://github.com/tmax-cloud/install-redis-operator/blob/main/manifests/manager.yaml#L33) '='연산자 우항에 level을 설정 후 yaml file apply
