@@ -78,3 +78,6 @@ redis-operator(v0.9.0) install guide
     $ sudo docker push ${REGISTRY}/redislabs/redisinsight:${REDIS_INSIGHT_VERSION}
     $ sudo docker push ${REGISTRY}/tmaxcloudck/redis-cluster-proxy:${REDIS_PROXY_VERSION}
     ```
+    
+## Deployment log level 설정 guide
+[manager.yaml](https://github.com/tmax-cloud/install-redis-operator/blob/main/manifests/manager.yaml#L33) '='연산자 우항에 level을 설정 후 yaml file apply
