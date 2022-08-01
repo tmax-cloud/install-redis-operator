@@ -80,4 +80,5 @@ redis-operator(v0.9.0) install guide
     ```
     
 ## Deployment log level 설정 guide
-[manager.yaml](https://github.com/tmax-cloud/install-redis-operator/blob/main/manifests/manager.yaml#L33) '='연산자 우항에 level을 설정 후 yaml file apply
+- 다음 file 수정
+  + [manager.yaml](https://github.com/tmax-cloud/install-redis-operator/blob/main/manifests/manager.yaml#L33) '='연산자 우항에 level을 설정 후 yaml file apply
