@@ -1,7 +1,7 @@
 ## Prerequisites
 - k8s cluster 환경 : 3개 이상의 worker node
 - cluster size : 3이상
-
+- Prometheus operator : servicemonitor CR을 생성하므로 필요
 ## Redis Cluster Monitoring Installation Guide
 ### 1. namespace 생성
 ```shell
